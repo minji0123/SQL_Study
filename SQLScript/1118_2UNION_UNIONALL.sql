@@ -1,7 +1,8 @@
 -- 집합연산자
--- UNION(합집합)
--- 컬럼의 갯수가 일치
--- 중복되는 데이터는 하나만 선택됨
+-- UNION(합집합) : 여러 개의 쿼리 결과 데이터를 위아래 하나의 결과로 출력 + 중복된 데이터를 제거
+-- 특징
+-- 1. 컬럼의 갯수가 일치해야 함
+-- 2. 중복되는 데이터는 하나만 선택됨
 
 SELECT * FROM EMP WHERE DEPTNO = 10;
 SELECT * FROM EMP WHERE DEPTNO = 20;
@@ -14,18 +15,18 @@ UNION
 SELECT * FROM EMP WHERE DEPTNO = 20;
 
 
--- 컬럼의 갯수가 일치해야 한다.
+-- 1. 컬럼의 갯수가 일치해야 한다.
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO = 10
 UNION
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO = 20;
 
 
--- 중복되는 부서20 은 하나의 행 가로 레코드 만 선택됨.
+-- 2. 중복되는 부서20 은 하나의 행 가로 레코드 만 선택됨.
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO IN (10,20)
 UNION
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO = 20;
 
--- 열의 갯수는 같은데, 인덱스가 다를 경우
+-- 열의 갯수는 같은데, 컬럼이 다를 경우
 -- 중복되어도 다른 데이터로 인식함
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO IN (10,20)
 UNION

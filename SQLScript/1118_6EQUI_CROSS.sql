@@ -1,13 +1,15 @@
--- 조인JOIN
+-- 조인JOIN : 서로 다른 테이블에 있는 컬럼들을 하나의 결과로 출력하기 위함
+-- CROSS JOIN : EQUI 조인에서, 조건을 주지 않고 조이을 하면 모든 데이터들이 전부 조인됨
 
 SELECT * FROM EMP; -- 컬럼 12개
 SELECT * FROM DEPT; -- 컬럼 4개
 
 -- 카티시안 프로덕션, 크로스 조인
-SELECT * FROM EMP E, DEPT D ORDER BY E.EMPNO, E.DEPTNO, D.DEPTNO; -- 컬럼 48개
+SELECT * FROM EMP E, DEPT D; -- 컬럼 48개
 
 -- 등가조인(EQUAL JOIN) 동등조인, 내부조인, 단순조인
-SELECT * FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO ORDER BY E.EMPNO;
+-- DEPTNO가 같은 
+SELECT * FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO;
 
 -- [문제]
 -- 급여가 3000 미만이면서 수당이 없는 사원

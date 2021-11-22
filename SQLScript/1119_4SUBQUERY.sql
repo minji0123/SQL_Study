@@ -1,10 +1,12 @@
--- 서브쿼리 SUB-QUERY
+-- 서브쿼리 SUB-QUERY : 특정 쿼리에서 검색한 값을 다른 쿼리에서 받아 검색하려면 서브쿼리를 사용해야 한다.
+
 -- SELELCT 문 안에 SELECT 문이 있음
 -- 메인쿼리 : 서브쿼리의 결과를 가지고 쿼리함
 -- 서브쿼리 : 
--- 메인쿼리의 대상
--- 서브쿼리는 메인쿼리와 컬럼명과 컬럼 개수가 같아야 한다.
--- 결과의 행 수는 메인쿼리의 연산자 종류와 호환 가능해야 한다. (결과가 단일행, 다중행)
+    -- 메인쿼리의 대상
+    -- 서브쿼리는 메인쿼리와 컬럼명과 컬럼 개수가 같아야 한다.
+    -- 결과의 행 수는 메인쿼리의 연산자 종류와 호환 가능해야 한다. (결과가 단일행, 다중행)
+
 
 -- 1. CLERK의 급여보다 돈을 많이 버는 사원을 출력하고 싶음
     -- 1-1 일단 다 출력
@@ -18,6 +20,7 @@ SELECT * FROM EMP WHERE SAL > 2450;
 -- 2. 서브쿼리로 해보셈 : 단일행과 단일 컬럼
 SELECT * FROM EMP WHERE SAL > (SELECT SAL FROM EMP WHERE EMPNO = 7782);
     -- 2-1 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 오류
+    -- 범위로 검색할 수 없기 때문이다. (다중 행 서브쿼리)
 SELECT * FROM EMP WHERE SAL > (SELECT SAL FROM EMP WHERE EMPNO > 7782);
 
 -- [문제1]
@@ -26,7 +29,6 @@ SELECT * FROM EMP ORDER BY HIREDATE;
 -- TURNER 보다 빨리 입사한 사원
 SELECT * FROM EMP WHERE HIREDATE < (SELECT HIREDATE FROM EMP WHERE  EMPNO = 7782);
 SELECT * FROM EMP WHERE TO_DATE(HIREDATE, 'YY/MM/DD') < TO_DATE('81/09/08','YY/MM/DD');
-
 
 -- [문제2]
 -- TURNER 보다 늦게 입사한 사원

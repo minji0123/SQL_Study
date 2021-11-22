@@ -1,13 +1,16 @@
 -- 조인(JOIN)
--- SELFJOIN
+-- SELFJOIN: 자기 자신 테이블과 조인
 
 
 -- 메니저 테이블 생성
 CREATE TABLE EMP_MGR
     AS SELECT * FROM EMP;
-    
+
+SELECT * FROM EMP_MGR;
+
 SELECT EMPNO, ENAME, MGR FROM EMP ORDER BY MGR;
 
+-- 이퀄조인
 -- 사원, 사원의 메니저
 -- 동일한 두개의 테이블로 조인해서 매니저이름을 검색 후 연결
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름

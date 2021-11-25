@@ -1,0 +1,48 @@
+-- 테이블에서 데이터 삭제하기 DELECT
+
+CREATE TABLE DEPTX2 AS SELECT * FROM DEPTX;
+
+SELECT * FROM DEPTX2;
+
+DELETE FROM DEPTX2;
+DROP TABLE DEPTX2;
+
+DELETE FROM DEPTX2 WHERE LOC LIKE '독도%';
+
+-- [문제]
+-- 임시테이블 EMPX에서 급여등급이 등급 범위에 속하지 않는 모든 사원을 삭제 
+SELECT * FROM EMPX1;
+SELECT * FROM SALGRADE;
+
+--DELETE FROM EMPX 
+--    WHERE (SELECT GRADE FROM SALGRADE WHERE E.SAL BETWEEN LOSAL AND HISAL)
+
+CREATE TABLE EMPX1 AS SELECT * FROM EMPX;
+
+-- 급여등급 범위에 있는 사원들
+SELECT E.* FROM EMPX1 E, SALGRADE S
+    WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL;
+-- 급여등급 범위 밖에 있는 사원들
+SELECT * FROM EMPX
+    WHERE EMPNO NOT IN(
+        SELECT E.EMPNO
+        FROM EMPX1 E, SALGRADE S
+        WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL);
+        
+-- 임시테이블 EMPX에서 급여등급이 등급 범위에 속하지 않는 모든 사원을 삭제 
+DELETE FROM EMPX1
+        WHERE EMPNO NOT IN(
+        SELECT E.EMPNO
+        FROM EMPX1 E, SALGRADE S
+        WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL);
+    
+------------------------------------------------------------------------------
+-- 크로스조인되면서 중복데이터까지 다 출력됨
+SELECT E.* FROM EMPX E, SALGRADE S
+    WHERE E.SAL NOT BETWEEN S.LOSAL AND S.HISAL;
+
+--중복데이터 제거
+SELECT DISTINCT E.EMPNO, E.ENAME
+    FROM EMPX E, SALGRADE S
+    WHERE E.SAL NOT BETWEEN S.LOSAL AND S.HISAL;
+    

@@ -71,5 +71,23 @@ SELECT *
 SELECT ROWNUM, E.EMPNO, E.ENAME, E.SAL
     FROM (SELECT * FROM EMP WHERE SAL<2450 ORDER BY SAL DESC) E
     WHERE ROWNUM <=5;
+
+
+-------------------------------------------------------------------------
+SELECT EMPNO, ENAME, SAL 
+    FROM EMP ORDER BY SAL DESC 
+    FETCH FIRST 5 ROWS ONLY; -- 5개의 레코드를 선택
     
-    
+SELECT ROWNUM, EMPNO, ENAME, SAL 
+    FROM (SELECT * FROM EMP ORDER BY SAL DESC)
+    WHERE ROWNUM<=5;
+-------------------------------------------------------------------------
+
+SELECT EMPNO, ENAME, SAL
+    FROM EMP ORDER BY SAL DESC
+    OFFSET 5 ROWS
+    FETCH FIRST 5 ROWS ONLY;
+
+SELECT * 
+FROM (SELECT ROWNUM numrow, aa.* FROM (SELECT EMPNO, ENAME, SAL FROM EMP  ORDER BY SAL desc) aa ) 
+WHERE numrow > 5 AND numrow <= 10;

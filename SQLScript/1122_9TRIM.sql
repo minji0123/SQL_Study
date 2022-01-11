@@ -19,8 +19,8 @@ SELECT '[' ||'  홍길동  '|| ']' FROM DUAL;
 SELECT '[' ||TRIM('  홍길동  ')|| ']' FROM DUAL; 
 
 SELECT '[' ||TRIM(BOTH ' 'FROM'  홍길동  ')|| ']' FROM DUAL;  -- 공백 제거
-SELECT '[' ||TRIM(BOTH '-'FROM'----홍길동----')|| ']' FROM DUAL;  -- - 제거
-SELECT '[' ||TRIM(BOTH '.'FROM'..--홍길동--..')|| ']' FROM DUAL;  -- .제거
+SELECT '[' ||TRIM(LEADING '-'FROM'----홍길동----')|| ']' FROM DUAL;  -- - 제거
+SELECT '[' ||TRIM(TRAILING '.'FROM'..--홍길동--..')|| ']' FROM DUAL;  -- .제거
 
 
 -- 문자열 왼쪽 공백을 지움

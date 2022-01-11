@@ -24,7 +24,9 @@ SELECT '40' AS DEPTNO, TRUNC(AVG(SAL)) FROM EMP WHERE DEPTNO = 40;
 -- GROUP BY
 -- 그룹화할 컬럼을 지정, 여러 컬럼을 지정 가능
 -- 부서별 평균 급여액
-SELECT DEPTNO, TRUNC(AVG(SAL)) FROM EMP GROUP BY DEPTNO;
+SELECT deptno AS 부서, TRUNC(AVG(sal)) AS 평균급여액
+    FROM emp 
+    GROUP BY deptno;
 
 -- 부서별, 직책별 평균 급여액
 SELECT DEPTNO, JOB, SAL FROM EMP;
@@ -53,4 +55,5 @@ SELECT  E.DEPTNO,D.DNAME, COUNT(E.EMPNO) AS 사원수, SUM(E.SAL) AS 급여총액, TRUN
     HAVING COUNT(E.EMPNO)<=3 AND E.DEPTNO = D.DEPTNO
     ORDER BY E.DEPTNO;
     
-    
+ -- 부서별 사원들의 급여총액, 평균급여액, 최고급여액, 최저급여액
+SELECT deptno, avg(sal), max(sal), min(sal) FROM emp GROUP BY deptno ORDER BY deptno;

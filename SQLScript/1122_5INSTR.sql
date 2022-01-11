@@ -6,7 +6,7 @@
 
 -- [1. 단일행 함수]
 -- 문자함수(String)
--- INSTR(데이터, 찾을문자, 시작위치, 순번) : 데이터의 특정 철자의 위치를 출력함
+-- INSTR(데이터, 특정철자, 찾을위치, 철자순번) : 데이터의 특정 철자의 위치를 출력함
     -- 데이터 : 문자열, 컬럼
     -- 찾을문자 : '문자'
     -- 시작위치 : 옵션, 기본값은 1 (1부터)
@@ -18,11 +18,14 @@
 SELECT JOB, INSTR(JOB, 'E') FROM EMP;
 
 -- 시작 위치를 지정한 경우
-SELECT JOB, INSTR(JOB, 'A') , INSTR(JOB, 'A', 3)FROM EMP;
+SELECT JOB, INSTR(JOB, 'A'), INSTR(JOB, 'A', 2)FROM EMP;
+
+SELECT INSTR('ABCDEABC', 'A') , INSTR('ABCAEABC', 'A', 5)FROM dual;
+
 
 -- 순번을 정한 경우
 -- JOB 컬럼에서 A를 찾아서, 시작위치는 처음부터(1부터) 2번째인 문자를 찾으셈
-SELECT JOB, INSTR(JOB, 'A',1,2) FROM EMP;
+SELECT JOB, INSTR(JOB, 'A',2,2) FROM EMP;
 
 -- 전화번호
 SELECT INSTR('02-1234-5678', '-', 1,2) AS 서울 FROM DUAL;
@@ -40,5 +43,6 @@ SELECT SUBSTR('031-3456-9987', INSTR('031-3456-9987', '-', 1,2)+1 )AS 경기 FROM 
 -- 가운데 자리를 추출해라
 SELECT SUBSTR('010-7788-9797', INSTR('010-7788-9797', '-', 1,1)+1, 4)AS 경기 FROM DUAL;
 
-SELECT SUBSTR('010-7788-9797', INSTR('010-7788-9797', '-', 1,1)+1, INSTR('010-7788-9797', '-', 1,2)-INSTR('010-7788-9797', '-', 1)-1 )AS 경기 FROM DUAL;
+SELECT SUBSTR('010-7788-9797', INSTR('010-7788-9797', '-', 1,1)+1, INSTR('010-7788-9797', '-', 1,2)-INSTR('010-7788-9797', '-', 1)-1 )AS 전화번호 
+    FROM DUAL;
 

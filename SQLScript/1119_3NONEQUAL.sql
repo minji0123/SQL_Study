@@ -8,8 +8,10 @@
 -- 3등급 : 1401~2000
 -- 4등급 : 2001~3000
 -- 5등급 : 3001~9999
-SELECT * FROM EMP E, SALGRADE S
-    WHERE E.SAL>=S.LOSAL AND E.SAL <= S.HISAL;
+SELECT * 
+    FROM emp e, salgrade s
+    WHERE e.sal >= s.losal AND e.sal <= s.hisal;
     
-SELECT * FROM EMP E, SALGRADE S
-    WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL;
+SELECT e.ename, e.job, e.sal, s.losal, s.hisal
+    FROM emp e, salgrade s
+    WHERE e.sal BETWEEN s.losal AND s.hisal;

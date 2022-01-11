@@ -13,7 +13,7 @@ SELECT DEPTNO, JOB, COUNT(*) FROM EMP GROUP BY DEPTNO,JOB;
     SELECT DEPTNO, COUNT(JOB) FROM EMP GROUP BY JOB;
 
 -- 각 부서별 사원수, 직책별 사원수
-SELECT DEPTNO, JOB, COUNT(*) 
-    FROM EMP 
-    GROUP BY GROUPING SETS( DEPTNO,JOB)
-    ORDER BY DEPTNO, JOB;
+SELECT deptno, job, COUNT(empno) AS 사원수, SUM(sal) AS 총급여액, TRUNC(AVG(sal)) AS 평균급여액
+    FROM emp 
+    GROUP BY GROUPING SETS( deptno , job )
+    ORDER BY deptno, job;

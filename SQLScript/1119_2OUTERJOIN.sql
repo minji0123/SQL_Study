@@ -2,10 +2,10 @@
 -- OUTER JOIN
 
 -- 셀프조인 SELF JOIN
-SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
-    FROM EMP E, EMP M
-    WHERE E.MGR = M.EMPNO;
-
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e, emp m
+    WHERE e.mgr = m.empno
+    ORDER BY e.mgr;
 
 -- LEFT OUTER JOIN
 -- SQL 버전
@@ -16,8 +16,11 @@ SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
     FROM EMP E,  EMP M
     WHERE E.MGR = M.EMPNO (+);
-    
-    
+
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e, emp m
+    WHERE e.mgr = m.empno (+);
+
 -- RIGHT OUTER JOIN
 -- SQL 버전
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
@@ -27,6 +30,11 @@ SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
     FROM EMP E,  EMP M
     WHERE E.MGR(+) = M.EMPNO;
+
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e, emp m
+    WHERE e.mgr (+)= m.empno
+    ORDER BY e.mgr;
     
     
 -- FULL OUTER JOIN

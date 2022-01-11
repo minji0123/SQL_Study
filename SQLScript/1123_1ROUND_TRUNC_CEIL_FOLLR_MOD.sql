@@ -59,9 +59,12 @@ SELECT FLOORFLOOR(-345) FROM DUAL; -- 결과 : -345
 
 -----------------------------------------------------------------------------------------
 -- MOD(나누어질 숫자, 나눌 숫자)
-SELECT MOD(10,3) FROM DUAL; -- 나머지 : 1
+    SELECT MOD(10,3) FROM DUAL; -- 나머지 : 1
 SELECT MOD(10,2) FROM DUAL; -- 나머지 : 0
 -- 홀수
 SELECT MOD(7,2) FROM DUAL; -- 나머지 : 1
 -- 짝수
 SELECT MOD(8,2) FROM DUAL; -- 나머지 : 0
+
+
+

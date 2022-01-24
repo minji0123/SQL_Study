@@ -12,6 +12,12 @@ SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
     FROM EMP E LEFT OUTER JOIN EMP M ON(E.MGR = M.EMPNO)
     ORDER BY E.EMPNO;
+
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e LEFT OUTER JOIN emp m 
+    ON(e.mgr = m.empno)
+    ORDER BY e.mgr;
+    
 -- 오라클 버전
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
     FROM EMP E,  EMP M
@@ -19,13 +25,20 @@ SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매
 
 SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
     FROM emp e, emp m
-    WHERE e.mgr = m.empno (+);
+    WHERE e.mgr = m.empno (+)
+    ORDER BY e.mgr;
 
 -- RIGHT OUTER JOIN
 -- SQL 버전
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
     FROM EMP E RIGHT OUTER JOIN EMP M ON(E.MGR = M.EMPNO)
     ORDER BY E.EMPNO;
+    
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e RIGHT OUTER JOIN emp m 
+    ON(e.mgr = m.empno)
+    ORDER BY e.mgr;
+    
 -- 오라클 버전
 SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매네저코드M, M.ENAME AS 매니저이름
     FROM EMP E,  EMP M
@@ -42,6 +55,14 @@ SELECT E.EMPNO AS 사원, E.ENAME AS 사원이름, E.MGR AS 매니저코드E, M.EMPNO AS 매
     FROM EMP E FULL OUTER JOIN EMP M ON(E.MGR = M.EMPNO)
     ORDER BY E.EMPNO;
     
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e LEFT OUTER JOIN emp m 
+    ON(e.mgr = m.empno)
+UNION
+SELECT e.ename AS 사원이름, e.mgr , m.empno, m.ename AS 매니저이름
+    FROM emp e RIGHT OUTER JOIN emp m 
+    ON(e.mgr = m.empno);
+--    ORDER BY e.mgr;
     
 --[문제]
 -- FULL OUTER JOIN (전체 외부조인)_기존방식

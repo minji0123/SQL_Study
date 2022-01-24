@@ -10,13 +10,22 @@ SELECT * FROM EMP WHERE DEPTNO IN(10, 20) ORDER BY DEPTNO;
 -- 각 부서별 최고 급여액
 SELECT DEPTNO, MAX(SAL) FROM EMP GROUP BY DEPTNO;
 -- 각 부서별 최저 급여액 950
-SELECT DEPTNO, MIN(SAL) FROM EMP GROUP BY DEPTNO;
+SELECT MIN(SAL) FROM EMP GROUP BY DEPTNO;
 
 -----------------------------------------------------------------------------
 -- [IN]
 -- 부서별 최고 급여액을 받는 사원정보
-SELECT * FROM EMP
-    WHERE SAL IN (SELECT MAX(SAL) FROM EMP GROUP BY DEPTNO);
+SELECT ename, job, sal 
+    FROM emp
+    WHERE sal IN (SELECT MAX(sal) 
+                    FROM emp 
+                    GROUP BY deptno);
+                
+SELECT ename, job, sal
+    FROM emp
+    WHERE empno NOT IN (SELECT mgr 
+                    FROM emp 
+                    WHERE mgr is not null);          
 -----------------------------------------------------------------------------
 -- [문제]
 -- 부서별 최저 급여액을 받는 사원정보
@@ -44,4 +53,9 @@ SELECT * FROM DEPT
 SELECT * FROM dept WHERE deptno not in(SELECT deptno FROM emp GROUP by deptno); -- 오영국님
     -- GROUP BY 는 집계함수이기 때문에 이렇게 잘 쓰지는 않는다.
 
-
+----------------------------------------------------------------------------
+SELECT *
+    FROM dept d
+    WHERE NOT EXISTS (SELECT *
+                    FROM emp e
+                    WHERE e.deptno = d.deptno);

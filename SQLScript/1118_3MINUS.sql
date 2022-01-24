@@ -34,6 +34,12 @@ SELECT * FROM EMP WHERE ENAME = 'KING'
 UNION ALL
 SELECT * FROM EMP3 WHERE ENAME = 'KING';
 
-
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE deptno in (10,20)
+MINUS
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE deptno in (20,30);
 
 

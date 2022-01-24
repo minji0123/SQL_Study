@@ -14,8 +14,9 @@ SELECT E.EMPNO, E.ENAME, E.SAL, S.GRADE
     
 ------------------------------------------------------------------------------------------------- 
 -- 스칼라 서브쿼리(SCALAR SUB-QUERY)
-SELECT E.EMPNO, E.ENAME, E.SAL, (SELECT GRADE FROM SALGRADE WHERE E.SAL BETWEEN LOSAL AND HISAL) AS SALGRADE
-    FROM EMP E;
+-- 사원의 급여 등급
+SELECT e.empno, e.ename, e.sal, (SELECT grade FROM salgrade WHERE e.sal BETWEEN losal AND hisal) AS 급여등급
+    FROM emp e;
 ------------------------------------------------------------------------------------------------- 
 -- 이렇게 하면 오류남
 -- 다중행 결과가 나오면 안됨 (단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다.)
@@ -27,10 +28,10 @@ SELECT E.EMPNO, E.ENAME, E.SAL, (SELECT GRADE, LOSAL, HISAL FROM SALGRADE WHERE 
     FROM EMP E ORDER BY 1;
 -------------------------------------------------------------------------------------------------
 -- 부서코드, 부서이름
-SELECT E.EMPNO, E.ENAME, E.SAL, 
-    (SELECT GRADE FROM SALGRADE WHERE E.SAL BETWEEN LOSAL AND HISAL) AS SALGRADE,
-    (SELECT DNAME FROM DEPT WHERE E.DEPTNO = DEPT.DEPTNO) AS DNAME
-    FROM EMP E ORDER BY 1;
+SELECT e.empno, e.ename, e.sal, (SELECT grade FROM salgrade WHERE e.sal BETWEEN losal AND hisal) AS 급여등급,
+                                (SELECT dname FROM dept WHERE e.deptno = dept.deptno) AS 부서이름
+    FROM emp e 
+    ORDER BY 1;
     
     
     

@@ -4,15 +4,28 @@
 -- 1. 컬럼의 갯수가 일치해야 함
 -- 2. 중복되는 데이터는 하나만 선택됨
 
+SELECT job, sum(sal)
+    FROM emp
+    GROUP BY job
+UNION ALL
+SELECT null AS job, sum(sal)
+    FROM emp;
+
+
+
 SELECT * FROM EMP WHERE DEPTNO = 10;
 SELECT * FROM EMP WHERE DEPTNO = 20;
 
 SELECT * FROM EMP WHERE DEPTNO IN (10, 20);
 
 -- UNION
-SELECT * FROM EMP WHERE DEPTNO = 10
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE DEPTNO = 10
 UNION
-SELECT * FROM EMP WHERE DEPTNO = 20;
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE DEPTNO = 20;
 
 
 -- 1. 컬럼의 갯수가 일치해야 한다.
@@ -31,6 +44,7 @@ SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO = 20;
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO IN (10,20)
 UNION
 SELECT EMPNO, ENAME, SAL, COMM FROM EMP WHERE DEPTNO = 20;
+
 -- ---------------------------------------------------------------------------------
 -- 새로운 테이블 생성 : 기존의 테이블을 이용해서
 CREATE TABLE EMP2 AS SELECT EMPNO, ENAME, SAL, SAL * 12 AS ANNUAL FROM EMP;
@@ -62,8 +76,14 @@ SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP WHERE DEPTNO IN (20)
 UNION
 SELECT EMPNO, ENAME, SAL, DEPTNO FROM EMP3;
 
-
-
+-- UNION ALL
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE deptno in (10,20)
+UNION ALL
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE deptno in (20,30);
 
 
 

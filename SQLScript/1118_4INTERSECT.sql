@@ -19,3 +19,12 @@ INTERSECT
 SELECT sal FROM emp2
 INTERSECT
 SELECT sal FROM emp3;
+
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE deptno in (10,20)
+INTERSECT
+SELECT ename, job, deptno
+    FROM EMP 
+    WHERE deptno in (20,30);
+    

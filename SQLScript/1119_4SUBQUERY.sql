@@ -18,7 +18,12 @@ SELECT EMPNO, ENAME, SAL AS 급여
 SELECT * FROM EMP WHERE SAL > 2450;
 
 -- 2. 서브쿼리로 해보셈 : 단일행과 단일 컬럼
-SELECT * FROM EMP WHERE SAL > (SELECT SAL FROM EMP WHERE EMPNO = 7782);
+SELECT ename, sal
+    FROM emp 
+    WHERE sal > (SELECT sal 
+                    FROM emp 
+                    WHERE ename = 'WARD');
+                    
     -- 2-1 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 오류
     -- 범위로 검색할 수 없기 때문이다. (다중 행 서브쿼리)
 SELECT * FROM EMP WHERE SAL > (SELECT SAL FROM EMP WHERE EMPNO > 7782);
@@ -44,10 +49,11 @@ SELECT EMP.*, DEPT.* FROM EMP, DEPT
 
 -- [문제4]
 -- 부서코드가 20에 속한 사원중에 전체 사원의 평균 급여보다 높은 급여를 받는 사원정보와 소속 부서 정보를 출력
-SELECT EMP.*, DEPT.* FROM EMP, DEPT 
-    WHERE EMP.DEPTNO = DEPT.DEPTNO
-    AND EMP.DEPTNO =20
-    AND EMP.SAL >ALL (SELECT AVG(SAL) FROM EMP);
+SELECT e.ename, e.sal, d.deptno 
+    FROM emp e, dept d 
+    WHERE e.deptno = d.deptno
+        AND d.deptno =20
+        AND e.sal > (SELECT AVG(sal) FROM emp);
 
 
 

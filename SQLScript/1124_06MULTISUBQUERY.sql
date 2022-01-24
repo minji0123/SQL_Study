@@ -7,15 +7,21 @@ SELECT * FROM EMP WHERE DEPTNO = 30 ORDER BY SAL;
 --------------------------------------------------------------------------------------------------
 -- 부서코드가 30인 사원들의 최소 급여보다 더 적은 급여를 받는 사원
 -- 부서코드가 30인 사원들의 최소 급여_JAMES : 950
-SELECT * FROM EMP
-    WHERE SAL <ALL (SELECT SAL FROM EMP WHERE DEPTNO = 30)
-    ORDER BY SAL, EMPNO;
+SELECT ename, sal 
+    FROM emp e
+    WHERE sal > ALL (SELECT sal 
+                        FROM emp 
+                        WHERE deptno = 30);
+--    ORDER BY SAL, EMPNO;
 
 --[문제] 그룹함수로 전환
 -- 부서코드가 30인 사원들의 최소 급여보다 더 적은 급여를 받는 사원 정보
-SELECT * FROM EMP
-    WHERE SAL < (SELECT MIN(SAL) FROM EMP WHERE DEPTNO = 30)
-    ORDER BY SAL, EMPNO;
+SELECT e.ename, e.sal 
+    FROM emp e
+    WHERE sal < (SELECT MIN(sal) 
+                    FROM emp 
+                    WHERE deptno = 30);
+--    ORDER BY SAL, EMPNO;
 
 
 

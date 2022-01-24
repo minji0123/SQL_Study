@@ -24,8 +24,11 @@ SELECT * FROM EMP
 -----------------------------------------------------------------------------
 -- [문제]
 -- 부서코드(30) 의 최대 급여를 받는 사람보다 적은 급여를 받는 모든 사원 정보 2850
-SELECT * FROM EMP
-    WHERE SAL < ANY (SELECT SAL FROM EMP WHERE DEPTNO = 30);
+SELECT ename, job, sal 
+    FROM emp
+    WHERE sal < ANY (SELECT sal 
+                        FROM emp 
+                        WHERE deptno = 30);
     
 SELECT * FROM EMP
     WHERE SAL < SOME (SELECT SAL FROM EMP WHERE DEPTNO = 30);
@@ -38,8 +41,11 @@ SELECT * FROM EMP
 -----------------------------------------------------------------------------
 -- [문제]
 -- 부서코드(30) 의 최저 급여를 받는 사람보다 많은 급여를 받는 모든 사원 정보 950
-SELECT * FROM EMP
-    WHERE SAL > ANY (SELECT SAL FROM EMP WHERE DEPTNO = 30);
+SELECT ename, job, sal 
+    FROM emp
+    WHERE sal > ANY (SELECT sal 
+                        FROM emp 
+                        WHERE deptno = 30);
 
 SELECT * FROM EMP
     WHERE SAL < SOME (SELECT SAL FROM EMP WHERE DEPTNO = 30);
